@@ -57,6 +57,9 @@ function closeLightbox() {
   document.getElementById("lightbox").classList.add("hidden");
 }
 
+document.getElementById("lightbox").onclick = (e) => {
+  if (e.target.id === "lightbox") closeLightbox();
+};
 document.getElementById("prev").onclick = () => {
   const photosToShow = getFilteredPhotos();
   currentIndex = (currentIndex - 1 + photosToShow.length) % photosToShow.length;
