@@ -1,3 +1,5 @@
+console.log("SCRIPT IS RUNNING");
+
 let currentAlbum = "all";
 
 const gallery = document.getElementById("gallery");
