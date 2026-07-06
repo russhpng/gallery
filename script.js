@@ -47,17 +47,13 @@ function getCurrentPhotos() {
 
 function openLightbox(index) {
   currentIndex = index;
-
-  const lightbox = document.getElementById("lightbox");
-  lightbox.classList.remove("hidden");
-
+  document.getElementById("lightbox").classList.add("show");
   updateLightboxImage(true);
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").classList.add("hidden");
+  document.getElementById("lightbox").classList.remove("show");
 }
-
 function updateLightboxImage(preloadNext = false) {
   const photos = getCurrentPhotos();
   const photo = photos[currentIndex];
