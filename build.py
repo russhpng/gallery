@@ -19,7 +19,7 @@ for file in os.listdir(PHOTO_DIR):
         # 👇 ALBUM DETECTION RULE
         # folder naming: travel_IMG001.jpg, cars_IMG002.jpg
         if "_" in file:
-            album = file.split("_")[0].lower()
+            album = file.split("_")[0]
         else:
             album = "uncategorized"
 
