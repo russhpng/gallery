@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Photo Portfolio</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+  <h1>My Photography</h1>
+  <p>Full resolution gallery — click to view & download</p>
+</header>
+
+<div id="albums"></div>
+<div id="gallery"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="hidden">
+  <span id="close">×</span>
+
+  <img id="lightbox-img">
+
+  <div class="controls">
+    <button id="prev">⟨</button>
+    <button id="download">Download</button>
+    <button id="next">⟩</button>
+  </div>
+</div>
+
+<script src="photos.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
