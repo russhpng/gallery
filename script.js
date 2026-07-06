@@ -97,6 +97,29 @@ function prevImage() {
   updateLightboxImage(true);
 }
 
+document.addEventListener("keydown", (e) => {
+  const lightbox = document.getElementById("lightbox");
+  if (!lightbox.classList.contains("show")) return;
+
+  if (e.key === "Escape") closeLightbox();
+  if (e.key === "ArrowRight") nextImage();
+  if (e.key === "ArrowLeft") prevImage();
+});
+
+document.getElementById("lightbox").addEventListener("touchstart", (e) => {
+  touchStartX = e.changedTouches[0].screenX;
+});
+
+document.getElementById("lightbox").addEventListener("touchend", (e) => {
+  const endX = e.changedTouches[0].screenX;
+  const diff = endX - touchStartX;
+
+  if (Math.abs(diff) > 50) {
+    if (diff < 0) nextImage();
+    else prevImage();
+  }
+});
+
 function renderGallery() {
   gallery.innerHTML = "";
 
@@ -108,7 +131,7 @@ function renderGallery() {
 
     img.src = "thumbnails/" + photo.file;
 
-    div.onclick = () => openLightbox(index);
+  div.onclick = () => openLightbox(index);
 
     div.appendChild(img);
     gallery.appendChild(div);
@@ -116,5 +139,8 @@ function renderGallery() {
 }
 renderAlbums();
 renderGallery();
+document.getElementById("close").onclick = closeLightbox;
+document.getElementById("next").onclick = nextImage;
+document.getElementById("prev").onclick = prevImage;
 document.getElementById("close").onclick = closeLightbox;
 
