@@ -49,13 +49,13 @@ function openLightbox(index) {
   currentIndex = index;
 
   const lightbox = document.getElementById("lightbox");
-  lightbox.classList.add("show");
+  lightbox.classList.remove("hidden");
 
   updateLightboxImage(true);
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").classList.remove("show");
+  document.getElementById("lightbox").classList.add("hidden");
 }
 
 function updateLightboxImage(preloadNext = false) {
