@@ -39,42 +39,63 @@ function renderAlbums() {
 }
 
 let currentIndex = 0;
+let touchStartX = 0;
+
+function getCurrentPhotos() {
+  return getFilteredPhotos();
+}
 
 function openLightbox(index) {
   currentIndex = index;
 
-  const photosToShow = getFilteredPhotos();
-  const photo = photosToShow[currentIndex];
-
   const lightbox = document.getElementById("lightbox");
-  const img = document.getElementById("lightbox-img");
+  lightbox.classList.add("show");
 
-  img.src = "photos/" + photo.file; // full resolution image path
-  lightbox.classList.remove("hidden");
+  updateLightboxImage(true);
 }
 
 function closeLightbox() {
-  document.getElementById("lightbox").classList.add("hidden");
+  document.getElementById("lightbox").classList.remove("show");
 }
 
-document.getElementById("lightbox").onclick = (e) => {
-  if (e.target.id === "lightbox") closeLightbox();
-};
-document.getElementById("prev").onclick = () => {
-  const photosToShow = getFilteredPhotos();
-  currentIndex = (currentIndex - 1 + photosToShow.length) % photosToShow.length;
+function updateLightboxImage(preloadNext = false) {
+  const photos = getCurrentPhotos();
+  const photo = photos[currentIndex];
 
-  document.getElementById("lightbox-img").src =
-    "photos/" + photosToShow[currentIndex].file;
-};
+  const img = document.getElementById("lightbox-img");
 
-document.getElementById("next").onclick = () => {
-  const photosToShow = getFilteredPhotos();
-  currentIndex = (currentIndex + 1) % photosToShow.length;
+  const fullPath = "photos/" + photo.file;
 
-  document.getElementById("lightbox-img").src =
-    "photos/" + photosToShow[currentIndex].file;
-};
+  img.src = fullPath;
+
+  // 🔥 preload next image for smoothness
+  if (preloadNext) {
+    const next = new Image();
+    next.src = "photos/" + photos[(currentIndex + 1) % photos.length].file;
+  }
+
+  // update download button
+  document.getElementById("download").onclick = () => {
+    const a = document.createElement("a");
+    a.href = fullPath;
+    a.download = photo.file;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  };
+}
+
+function nextImage() {
+  const photos = getCurrentPhotos();
+  currentIndex = (currentIndex + 1) % photos.length;
+  updateLightboxImage(true);
+}
+
+function prevImage() {
+  const photos = getCurrentPhotos();
+  currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+  updateLightboxImage(true);
+}
 
 function renderGallery() {
   gallery.innerHTML = "";
