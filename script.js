@@ -131,7 +131,7 @@ function renderGallery() {
 
     img.src = "thumbnails/" + photo.file;
 
-  div.onclick = () => openLightbox(index);
+div.onclick = () => openLightbox(getFilteredPhotos().indexOf(photo));
 
     div.appendChild(img);
     gallery.appendChild(div);
@@ -142,5 +142,4 @@ renderGallery();
 document.getElementById("close").onclick = closeLightbox;
 document.getElementById("next").onclick = nextImage;
 document.getElementById("prev").onclick = prevImage;
-document.getElementById("close").onclick = closeLightbox;
 
