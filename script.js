@@ -38,6 +38,41 @@ function renderAlbums() {
   });
 }
 
+let currentIndex = 0;
+
+function openLightbox(index) {
+  currentIndex = index;
+
+  const photosToShow = getFilteredPhotos();
+  const photo = photosToShow[currentIndex];
+
+  const lightbox = document.getElementById("lightbox");
+  const img = document.getElementById("lightbox-img");
+
+  img.src = "photos/" + photo.file; // full resolution image path
+  lightbox.classList.remove("hidden");
+}
+
+function closeLightbox() {
+  document.getElementById("lightbox").classList.add("hidden");
+}
+
+document.getElementById("prev").onclick = () => {
+  const photosToShow = getFilteredPhotos();
+  currentIndex = (currentIndex - 1 + photosToShow.length) % photosToShow.length;
+
+  document.getElementById("lightbox-img").src =
+    "photos/" + photosToShow[currentIndex].file;
+};
+
+document.getElementById("next").onclick = () => {
+  const photosToShow = getFilteredPhotos();
+  currentIndex = (currentIndex + 1) % photosToShow.length;
+
+  document.getElementById("lightbox-img").src =
+    "photos/" + photosToShow[currentIndex].file;
+};
+
 function renderGallery() {
   gallery.innerHTML = "";
 
@@ -57,3 +92,5 @@ function renderGallery() {
 }
 renderAlbums();
 renderGallery();
+document.getElementById("close").onclick = closeLightbox;
+
