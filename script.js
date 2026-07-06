@@ -55,3 +55,5 @@ function renderGallery() {
     gallery.appendChild(div);
   });
 }
+renderAlbums();
+renderGallery();
