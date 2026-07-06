@@ -1,4 +1,6 @@
 console.log("SCRIPT IS RUNNING");
+console.log("albums:", document.getElementById("albums"));
+console.log("gallery:", document.getElementById("gallery"));
 
 let currentAlbum = "all";
 
