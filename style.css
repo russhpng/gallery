@@ -37,27 +37,6 @@ header {
   transform: scale(1.02);
 }
 
-/* LIGHTBOX */
-#lightbox {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.95);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-
-#lightbox.hidden {
-  display: none;
-}
-
-#lightbox img {
-  max-width: 90%;
-  max-height: 80vh;
-  border-radius: 10px;
-}
-
 #albums {
   text-align: center;
   margin: 15px;
@@ -97,6 +76,7 @@ button {
   border-radius: 8px;
   cursor: pointer;
 }
+
 #lightbox {
   position: fixed;
   inset: 0;
@@ -105,6 +85,7 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease;
@@ -118,6 +99,7 @@ button {
 #lightbox img {
   max-width: 90%;
   max-height: 80%;
+  border-radius: 10px;
   transition: transform 0.2s ease;
 }
 
