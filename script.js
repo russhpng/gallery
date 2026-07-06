@@ -2,18 +2,18 @@ console.log("SCRIPT IS RUNNING");
 console.log("albums:", document.getElementById("albums"));
 console.log("gallery:", document.getElementById("gallery"));
 
-let currentAlbum = "all";
+let currentAlbum = "All";
 
 const gallery = document.getElementById("gallery");
 const albumsDiv = document.getElementById("albums");
 
 function getFilteredPhotos() {
-  if (currentAlbum === "all") return photos;
+  if (currentAlbum === "All") return photos;
   return photos.filter(p => p.album === currentAlbum);
 }
 
 function renderAlbums() {
-  const albums = ["all", ...new Set(photos.map(p => p.album))];
+  const albums = ["All", ...new Set(photos.map(p => p.album))];
 
   albumsDiv.innerHTML = "";
 
@@ -22,7 +22,7 @@ function renderAlbums() {
     btn.innerText = album;
     btn.className = "album-btn";
 
-    if (album === "all") btn.classList.add("active");
+    if (album === "All") btn.classList.add("active");
 
     btn.onclick = () => {
       currentAlbum = album;
